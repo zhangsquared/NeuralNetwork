@@ -1,17 +1,16 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NeuralNetwork.Model;
 
 namespace UnitTestProject
 {
-	[TestClass]
-	public class SingleLayerUnitTest
+    [TestClass]
+	public class AndOrUnitTest
 	{
 		[TestMethod]
 		public void ANDLogic()
 		{
 			Perceptron AddGate = new Perceptron(2);
-            AddGate.SetActivationFunc(new SimpleActivation());
+            AddGate.SetActivationFunc(new StepActivation());
 
             double[,] inputs = new double[4, 2]
 			{
@@ -33,7 +32,7 @@ namespace UnitTestProject
 		public void ORLogic()
 		{
 			Perceptron OrGate = new Perceptron(2);
-            OrGate.SetActivationFunc(new SimpleActivation());
+            OrGate.SetActivationFunc(new StepActivation());
 
             double[,] inputs = new double[4, 2]
 			{
@@ -55,7 +54,7 @@ namespace UnitTestProject
 		public void XORLogic()
 		{
 			Perceptron XORGate = new Perceptron(2);
-            XORGate.SetActivationFunc(new SimpleActivation());
+            XORGate.SetActivationFunc(new StepActivation());
 
             double[,] inputs = new double[4, 2]
 			{

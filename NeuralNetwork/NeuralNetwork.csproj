@@ -41,10 +41,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interface\IActivation.cs" />
-    <Compile Include="Interface\INeuralNetwork.cs" />
+    <Compile Include="Interface\AbstractNeuralNetwork.cs" />
     <Compile Include="Model\Perceptron.cs" />
+    <Compile Include="Model\SigmoidActivation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Model\SimpleActivation.cs" />
+    <Compile Include="Model\StepActivation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
