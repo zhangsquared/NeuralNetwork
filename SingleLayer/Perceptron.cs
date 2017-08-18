@@ -34,7 +34,25 @@ namespace NeuralNetworkModel
             return sum < 0.0 ? 0.0 : 1.0;
         }
 
-        public bool Train(double[,] inputs, double[] outputs)
+        /// <summary>
+        /// The perceptron is trained to respond to each input vector with a corresponding target output of either 0 or 1. 
+        /// The learning rule has been proven to converge on a solution in finite time if a solution exists.
+        /// 
+        /// The learning rule can be summarized in the following two equations:
+        /// 
+        /// b = b + [ T - A ]
+        /// 
+        /// For all inputs i:
+        /// 
+        /// W(i) = W(i) + [ T - A ] * P(i)
+        /// 
+        /// Where W is the vector of weights, 
+        /// P is the input vector presented to the network, 
+        /// T is the correct result that the neuron should have shown, 
+        /// A is the actual output of the neuron, and b is the bias.
+        /// </summary>
+        /// <returns>true if converge; false if not</returns>
+        public bool LearningRule(double[,] inputs, double[] outputs)
 		{
 			if (inputs.GetLength(0) != outputs.Length)
 				throw new InvalidOperationException();
@@ -52,13 +70,13 @@ namespace NeuralNetworkModel
 					double calcOutput = ActivationFunc(Summation(GetRow(inputs, i)));
 					adjustment = outputs[i] - calcOutput;
 
-					bias += adjustment;
-					allPass &= adjustment.Equals(0.0);
+					bias += adjustment; // b = b + [ T - A ]
+                    allPass &= adjustment.Equals(0.0);
 
 					for (int j = 0; j < weights.Length; j++)
 					{
-						weights[j] += (adjustment * inputs[i, j]);
-					}
+						weights[j] += (adjustment * inputs[i, j]); // W(i) = W(i) + [ T - A ] * P(i)
+                    }
 				}
 				notPassed = !allPass;
 				count++;

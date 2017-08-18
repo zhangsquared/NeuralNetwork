@@ -4,7 +4,7 @@ namespace NeuralNetworkInterface
 {
     public interface INeuralNetwork
     {
-		bool Train(double[,] inputs, double[] outputs);
+		bool LearningRule(double[,] inputs, double[] outputs);
 		double ActivationFunc(double sum);
         double Summation(double[] inputs);
 

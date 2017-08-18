@@ -20,7 +20,7 @@ namespace UnitTestProject
 				{ 1, 1 }
 			};
 			double[] outputs = new double[4] { 0, 0, 0, 1 };
-			Assert.IsTrue(AddGate.Train(inputs, outputs));
+			Assert.IsTrue(AddGate.LearningRule(inputs, outputs)); // can converge
 
             Assert.IsTrue(AddGate.TrainingOutput(new double[] { 0, 0 }).Equals(0));
             Assert.IsTrue(AddGate.TrainingOutput(new double[] { 0, 1 }).Equals(0));
@@ -41,7 +41,7 @@ namespace UnitTestProject
 				{ 1, 1 }
 			};
 			double[] outputs = new double[4] { 0, 1, 1, 1 };
-			Assert.IsTrue(OrGate.Train(inputs, outputs));
+			Assert.IsTrue(OrGate.LearningRule(inputs, outputs)); // can converge
 
             Assert.IsTrue(OrGate.TrainingOutput(new double[] { 0, 0 }).Equals(0));
             Assert.IsTrue(OrGate.TrainingOutput(new double[] { 0, 1 }).Equals(1));
@@ -63,8 +63,8 @@ namespace UnitTestProject
 			};
 			double[] outputs = new double[4] { 0, 1, 1, 0 };
 			// single layer cannot represent XOR logic
-			Assert.IsFalse(perceptron.Train(inputs, outputs));
-		}
+			Assert.IsFalse(perceptron.LearningRule(inputs, outputs)); // cannot converge
+        }
 
 	}
 }
