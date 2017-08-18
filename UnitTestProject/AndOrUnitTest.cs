@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NeuralNetwork.Interface;
 using NeuralNetwork.Model;
 
 namespace UnitTestProject
@@ -6,11 +7,19 @@ namespace UnitTestProject
     [TestClass]
 	public class AndOrUnitTest
 	{
+        private AbstractNeuralNetwork perceptron;
+
+        public AndOrUnitTest()
+        {
+            perceptron = new Perceptron(2);
+            perceptron.SetActivationFunc(new StepActivation());
+        }
+
+
 		[TestMethod]
 		public void ANDLogic()
 		{
-			Perceptron AddGate = new Perceptron(2);
-            AddGate.SetActivationFunc(new StepActivation());
+            perceptron.UnLearn();
 
             double[,] inputs = new double[4, 2]
 			{
@@ -20,19 +29,18 @@ namespace UnitTestProject
 				{ 1, 1 }
 			};
 			double[] outputs = new double[4] { 0, 0, 0, 1 };
-			Assert.IsTrue(AddGate.LearningRule(inputs, outputs)); // can converge
+			Assert.IsTrue(perceptron.Learn(inputs, outputs)); // can converge
 
-            Assert.IsTrue(AddGate.TrainingOutput(new double[] { 0, 0 }).Equals(0));
-            Assert.IsTrue(AddGate.TrainingOutput(new double[] { 0, 1 }).Equals(0));
-            Assert.IsTrue(AddGate.TrainingOutput(new double[] { 1, 0 }).Equals(0));
-            Assert.IsTrue(AddGate.TrainingOutput(new double[] { 1, 1 }).Equals(1));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 0, 0 }).Equals(0));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 0, 1 }).Equals(0));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 1, 0 }).Equals(0));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 1, 1 }).Equals(1));
         }
 
 		[TestMethod]
 		public void ORLogic()
 		{
-			Perceptron OrGate = new Perceptron(2);
-            OrGate.SetActivationFunc(new StepActivation());
+            perceptron.UnLearn();
 
             double[,] inputs = new double[4, 2]
 			{
@@ -42,19 +50,18 @@ namespace UnitTestProject
 				{ 1, 1 }
 			};
 			double[] outputs = new double[4] { 0, 1, 1, 1 };
-			Assert.IsTrue(OrGate.LearningRule(inputs, outputs)); // can converge
+			Assert.IsTrue(perceptron.Learn(inputs, outputs)); // can converge
 
-            Assert.IsTrue(OrGate.TrainingOutput(new double[] { 0, 0 }).Equals(0));
-            Assert.IsTrue(OrGate.TrainingOutput(new double[] { 0, 1 }).Equals(1));
-            Assert.IsTrue(OrGate.TrainingOutput(new double[] { 1, 0 }).Equals(1));
-            Assert.IsTrue(OrGate.TrainingOutput(new double[] { 1, 1 }).Equals(1));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 0, 0 }).Equals(0));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 0, 1 }).Equals(1));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 1, 0 }).Equals(1));
+            Assert.IsTrue(perceptron.TrainingOutput(new double[] { 1, 1 }).Equals(1));
         }
 
 		[TestMethod]
 		public void XORLogic()
 		{
-			Perceptron XORGate = new Perceptron(2);
-            XORGate.SetActivationFunc(new StepActivation());
+            perceptron.UnLearn();
 
             double[,] inputs = new double[4, 2]
 			{
@@ -65,7 +72,7 @@ namespace UnitTestProject
 			};
 			double[] outputs = new double[4] { 0, 1, 1, 0 };
 			// single layer cannot represent XOR logic
-			Assert.IsFalse(XORGate.LearningRule(inputs, outputs)); // cannot converge
+			Assert.IsFalse(perceptron.Learn(inputs, outputs)); // cannot converge
         }
 
 	}

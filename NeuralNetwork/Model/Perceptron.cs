@@ -8,7 +8,7 @@ namespace NeuralNetwork.Model
 		public Perceptron(int inputCount)
 		{
 			weights = new double[inputCount];
-			RandomInit(); // random seeding init val for weights and bias
+			RandomInit(); 
 		}
 
         /// <summary>
@@ -29,7 +29,7 @@ namespace NeuralNetwork.Model
         /// A is the actual output of the neuron, and b is the bias.
         /// </summary>
         /// <returns>true if converge; false if not</returns>
-        public override bool LearningRule(double[,] inputs, double[] outputs)
+        public override bool Learn(double[,] inputs, double[] outputs)
 		{
 			if (inputs.GetLength(0) != outputs.Length)
 				throw new InvalidOperationException();
@@ -77,16 +77,6 @@ namespace NeuralNetwork.Model
             return activationFunc.ProcessValue(GetSum(input));
         }
 
-
-        private void RandomInit()
-        {
-            Random rnd = new Random();
-            for (int i = 0; i < weights.Length; i++)
-            {
-                weights[i] = rnd.NextDouble();
-            }
-            bias = rnd.NextDouble();
-        }
 
         private T[] GetRow<T>(T[,] matrix, int rowNum)
 		{
