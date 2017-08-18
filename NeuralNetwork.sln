@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.9
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleLayer", "SingleLayer\SingleLayer.csproj", "{94E1F0E2-764A-44F9-994A-EE06F5C0C338}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "INeuralNetwork", "INeuralNetwork\INeuralNetwork.csproj", "{4ECF5BCB-9F8E-44C0-AC48-9C6E091AED7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{0A81E616-6F87-4804-8BAD-7AB2B947DD80}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{94E1F0E2-764A-44F9-994A-EE06F5C0C338}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{94E1F0E2-764A-44F9-994A-EE06F5C0C338}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{94E1F0E2-764A-44F9-994A-EE06F5C0C338}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{94E1F0E2-764A-44F9-994A-EE06F5C0C338}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4ECF5BCB-9F8E-44C0-AC48-9C6E091AED7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4ECF5BCB-9F8E-44C0-AC48-9C6E091AED7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4ECF5BCB-9F8E-44C0-AC48-9C6E091AED7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4ECF5BCB-9F8E-44C0-AC48-9C6E091AED7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A81E616-6F87-4804-8BAD-7AB2B947DD80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A81E616-6F87-4804-8BAD-7AB2B947DD80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A81E616-6F87-4804-8BAD-7AB2B947DD80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A81E616-6F87-4804-8BAD-7AB2B947DD80}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
