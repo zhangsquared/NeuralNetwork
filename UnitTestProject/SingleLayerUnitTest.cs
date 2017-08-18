@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NeuralNetworkModel;
+using NeuralNetwork.Model;
 
 namespace UnitTestProject
 {
@@ -11,8 +11,9 @@ namespace UnitTestProject
 		public void ANDLogic()
 		{
 			Perceptron AddGate = new Perceptron(2);
+            AddGate.SetActivationFunc(new SimpleActivation());
 
-			double[,] inputs = new double[4, 2]
+            double[,] inputs = new double[4, 2]
 			{
 				{ 0, 0 },
 				{ 0, 1 },
@@ -32,8 +33,9 @@ namespace UnitTestProject
 		public void ORLogic()
 		{
 			Perceptron OrGate = new Perceptron(2);
+            OrGate.SetActivationFunc(new SimpleActivation());
 
-			double[,] inputs = new double[4, 2]
+            double[,] inputs = new double[4, 2]
 			{
 				{ 0, 0 },
 				{ 0, 1 },
@@ -52,9 +54,10 @@ namespace UnitTestProject
 		[TestMethod]
 		public void XORLogic()
 		{
-			Perceptron perceptron = new Perceptron(2);
+			Perceptron XORGate = new Perceptron(2);
+            XORGate.SetActivationFunc(new SimpleActivation());
 
-			double[,] inputs = new double[4, 2]
+            double[,] inputs = new double[4, 2]
 			{
 				{ 0, 0 },
 				{ 0, 1 },
@@ -63,7 +66,7 @@ namespace UnitTestProject
 			};
 			double[] outputs = new double[4] { 0, 1, 1, 0 };
 			// single layer cannot represent XOR logic
-			Assert.IsFalse(perceptron.LearningRule(inputs, outputs)); // cannot converge
+			Assert.IsFalse(XORGate.LearningRule(inputs, outputs)); // cannot converge
         }
 
 	}

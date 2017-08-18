@@ -1,7 +1,7 @@
 ﻿using System;
-using NeuralNetworkInterface;
+using NeuralNetwork.Interface;
 
-namespace NeuralNetworkModel
+namespace NeuralNetwork.Model
 {
     public class Perceptron : INeuralNetwork
     {
@@ -9,13 +9,19 @@ namespace NeuralNetworkModel
 		private double bias;
 		private int MAX = 1000000;
 
+        private IActivation activationFunc;
+
 		public Perceptron(int inputCount)
 		{
 			weights = new double[inputCount];
-			RandomInit();
+			RandomInit(); // random seeding init val for weights and bias
 		}
+        public void SetActivationFunc(IActivation func)
+        {
+            activationFunc = func;
+        }
 
-        public double Summation(double[] inputs)
+        public double GetSum(double[] inputs)
         {
             if (inputs.Length != weights.Length)
                 throw new InvalidOperationException();
@@ -29,10 +35,6 @@ namespace NeuralNetworkModel
             return sum;
         }
 
-        public double ActivationFunc(double sum)
-        {
-            return sum < 0.0 ? 0.0 : 1.0;
-        }
 
         /// <summary>
         /// The perceptron is trained to respond to each input vector with a corresponding target output of either 0 or 1. 
@@ -59,7 +61,12 @@ namespace NeuralNetworkModel
 			if (inputs.GetLength(1) != weights.Length)
 				throw new InvalidOperationException();
 
-			bool notPassed = true;
+            if (activationFunc == null)
+            {
+                throw new ArgumentException("Haven't set activation function");
+            }
+
+            bool notPassed = true;
 			int count = 0;
 			while(notPassed)
 			{
@@ -67,7 +74,7 @@ namespace NeuralNetworkModel
 				double adjustment = 0.0;
 				for (int i = 0; i < inputs.GetLength(0); i++)
 				{
-					double calcOutput = ActivationFunc(Summation(GetRow(inputs, i)));
+					double calcOutput = activationFunc.Activate(GetSum(GetRow(inputs, i)));
 					adjustment = outputs[i] - calcOutput;
 
 					bias += adjustment; // b = b + [ T - A ]
@@ -87,7 +94,12 @@ namespace NeuralNetworkModel
 
         public double TrainingOutput(double[] input)
         {
-            return ActivationFunc(Summation(input));
+            if (activationFunc == null)
+            {
+                throw new ArgumentException("Haven't set activation function");
+            }
+
+            return activationFunc.Activate(GetSum(input));
         }
 
         private void RandomInit()

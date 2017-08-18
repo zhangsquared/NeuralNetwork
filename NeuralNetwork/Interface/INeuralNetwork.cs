@@ -1,14 +1,15 @@
 ﻿using System;
 
-namespace NeuralNetworkInterface
+namespace NeuralNetwork.Interface
 {
     public interface INeuralNetwork
     {
 		bool LearningRule(double[,] inputs, double[] outputs);
-		double ActivationFunc(double sum);
-        double Summation(double[] inputs);
-
 
         double TrainingOutput(double[] input);
+
+        void SetActivationFunc(IActivation func);
+
+        double GetSum(double[] inputs);
     }
 }
